@@ -63,7 +63,18 @@
   color: #fff;
 }
 
-@media (max-width: 500px) {
+.leader-board {
+  flex: 1;
+  background: #1f2d3c;
+  text-align: center;
+  list-style-type: none;
+  margin: 10px auto;
+  color: #fff;
+  padding: 20px;
+  text-transform: capitalize;
+}
+
+@media (max-width: 600px) {
   .game {
     flex-direction: column;
   }

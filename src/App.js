@@ -95,6 +95,7 @@ class App extends React.Component {
               />
             </div>
             <div className="leader-board">
+              <h2>LeaderBoard</h2>
               {this.getWinners()}
             </div>
             <div className="game-info">
