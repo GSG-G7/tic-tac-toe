@@ -1,26 +1,33 @@
-
 .square {
-    height: 160px;
-    width: 160px;
-    background: #1f2d3c;
-    border: 1px solid #34495e;
-    float: left;
-    color: #fff;
-    font-size: 110px;
-    font-weight: bold;
-    line-height: 34px;
-    margin-right: -1px;
-    margin-top: -1px;
-    padding: 0;
-    text-align: center;
-    transition: all .2s ease-in;
-    cursor: pointer;
-  }
-  
-.square:hover {
-    background: #23323f;
+  height: 160px;
+  width: 160px;
+  background: #1f2d3c;
+  border: 1px solid #34495e;
+  float: left;
+  color: #fff;
+  font-size: 110px;
+  font-weight: bold;
+  line-height: 34px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  transition: all 0.2s ease-in;
+  cursor: pointer;
 }
 
-  .square:focus {
-    outline: none;
+.square:hover {
+  background: #23323f;
+}
+
+.square:focus {
+  outline: none;
+}
+
+@media (max-width: 500px) {
+  .square {
+    width: 100px;
+    height: 100px;
+    font-size: 80px;
   }
+}
