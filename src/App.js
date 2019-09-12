@@ -1,6 +1,7 @@
 import React from 'react';
 import { Board } from './components/Board'
 import { calculateWinner } from './utlis/calculateWinner';
+import { storeWinner } from './utlis/storeWinner';
 import { Form } from './components/Form'
 import './App.css';
 
@@ -53,6 +54,13 @@ class App extends React.Component {
       xIsNext: (step % 2) === 0
     })
   }
+  getWinners = () => {
+    const winners = JSON.parse(localStorage.getItem('winners'));
+    return winners ? winners.map((winner, index) => {
+      return winner ? <li key={index}>{winner.winner}</li> : '';
+    }) : '';
+
+  }
 
   render() {
     const { history, stepNumber, first, second, start } = this.state;
@@ -71,6 +79,7 @@ class App extends React.Component {
     let status;
     if (winner) {
       status = `Winner is ${(winner === 'X' ? first : second)}`;
+      winner === 'X' ? storeWinner(first) : storeWinner(second);
     } else {
       status = `Next Player: ${(this.state.xIsNext ? first : second)}`
     }
@@ -84,6 +93,9 @@ class App extends React.Component {
                 squares={current.squares}
                 onClick={(i) => this.handleClick(i)}
               />
+            </div>
+            <div className="leader-board">
+              {this.getWinners()}
             </div>
             <div className="game-info">
               <div className="status">{status}</div>
