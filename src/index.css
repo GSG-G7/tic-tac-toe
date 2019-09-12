@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Righteous|Roboto:400,700&display=swap');
+
 body {
-  font: 14px "Century Gothic", Futura, sans-serif;
+  font: 14px "Roboto", Futura, sans-serif;
+  background-color: #34495e;
   margin: 20px;
 }
 
@@ -17,28 +20,7 @@ ol, ul {
   margin-bottom: 10px;
 }
 
-.square {
-  background: #fff;
-  border: 1px solid #999;
-  float: left;
-  font-size: 24px;
-  font-weight: bold;
-  line-height: 34px;
-  height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
-  padding: 0;
-  text-align: center;
-  width: 34px;
-}
 
-.square:focus {
-  outline: none;
-}
-
-.kbd-navigation .square:focus {
-  background: #ddd;
-}
 
 .game {
   display: flex;

@@ -1,20 +1,20 @@
 import React from "react";
-
+import './Form.css'
 export const Form = (props) => {
     return (
-        <div>
-            <div>
+        <div className='form'>
+            <div className='first'>
                 <label>
-                    Player X
-                    <input type="text" name="firstPlayer" value={props.firstValue} onChange={(e) => props.onChange('first', e.target.value)} placeholder="Enter Name" />
+                    X
                 </label>
+                <input type="text" name="firstPlayer" value={props.firstValue} onChange={(e) => props.onChange('first', e.target.value)} placeholder="Player One" />
             </div>
-            <div>
+            <div className='second'>
 
                 <label>
-                    Player: O
-              <input type="text" name="secondPlayer" value={props.secondValue} onChange={(e) => props.onChange('second', e.target.value)} placeholder="Enter Name" />
+                    O
                 </label>
+                <input type="text" name="secondPlayer" value={props.secondValue} onChange={(e) => props.onChange('second', e.target.value)} placeholder="Player two" />
             </div>
         </div>
     );

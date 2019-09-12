@@ -77,19 +77,22 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        {start ? <div className="game-board">
-          <Board
-            squares={current.squares}
-            onClick={(i) => this.handleClick(i)}
-          />
-          <div className="game-info">
-            <div>{status}</div>
-            <ol>{moves}</ol>
-          </div>
-        </div> :
+        {start ?
+          <div className="game">
+            <div className="game-board">
+              <Board
+                squares={current.squares}
+                onClick={(i) => this.handleClick(i)}
+              />
+            </div>
+            <div className="game-info">
+              <div className="status">{status}</div>
+              <ol className="moves">{moves}</ol>
+            </div>
+          </div> :
           <div className="players-form">
             <Form onChange={this.hadleChange} firstValue={first} secondValue={second} />
-            <button onClick={this.handleStart}>Start</button>
+            <button className='start' onClick={this.handleStart}>Start</button>
           </div>
         }
       </div>

@@ -1,5 +1,6 @@
 import React from 'react'
 import Square from './Square'
+import './Board.css'
 export const Board = (props) => {
     const renderSquare = (i) => {
         return <Square value={props.squares[i]} onClick={() => props.onClick(i)} />
@@ -18,7 +19,7 @@ export const Board = (props) => {
         return rows;
     }
     return (
-        <div>
+        <div className='board'>
             {renderRows()}
         </div >
     );
