@@ -1,7 +1,7 @@
 import React from 'react';
-import Board from './classComponents/Board'
+import { Board } from './components/Board'
 import { calculateWinner } from './utlis/calculateWinner';
-import Form from './classComponents/Form'
+import { Form } from './components/Form'
 import './App.css';
 
 class App extends React.Component {
@@ -10,30 +10,27 @@ class App extends React.Component {
       squares: Array(9).fill(null)
     }],
     xIsNext: true,
-    stepNumber: 0,   
+    stepNumber: 0,
     first: null,
     second: null,
     start: false
   }
 
-  handleFirstChange = ({target: {value}}) => {
-    this.setState({first: value})
-  }
+  hadleChange = (property, value) => {
+    this.setState({ [property]: value })
 
-  handleSecondChange = ({target: {value}}) => {
-    this.setState({second: value})
   }
 
   handleStart = () => {
-    const {first, second} = this.state;
+    const { first, second } = this.state;
     if (first && second) {
-      this.setState({start: true})
+      this.setState({ start: true })
     }
   }
 
   handleClick(i) {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
-    const current = history[history.length -1];
+    const current = history[history.length - 1];
     const squares = current.squares.slice();
 
     if (calculateWinner(squares) || squares[i]) {
@@ -46,7 +43,7 @@ class App extends React.Component {
         squares: squares,
       }]),
       xIsNext: !this.state.xIsNext,
-      stepNumber:history.length
+      stepNumber: history.length
     })
   }
 
@@ -56,12 +53,11 @@ class App extends React.Component {
       xIsNext: (step % 2) === 0
     })
   }
-  
+
   render() {
-    const { history, stepNumber, first,second, start } = this.state;
+    const { history, stepNumber, first, second, start } = this.state;
     const current = history[stepNumber];
     const winner = calculateWinner(current.squares);
-
 
     const moves = history.map((step, move) => {
       const desc = move ? `Jump to ${move}` : 'Go to start game';
@@ -73,31 +69,32 @@ class App extends React.Component {
     })
 
     let status;
-    if(winner) {
+    if (winner) {
       status = `Winner is ${(winner === 'X' ? first : second)}`;
     } else {
       status = `Next Player: ${(this.state.xIsNext ? first : second)}`
     }
-    
+
     return (
       <div className="App">
-        {start ? <div className="game-board">
-          <Board 
-            squares={current.squares}
-            onClick={(i) => this.handleClick(i)}
-           />
-          <div className="game-info">
-            <div>{status}</div>
-            <ol>{moves}</ol>
+        {start ?
+          <div className="game">
+            <div className="game-board">
+              <Board
+                squares={current.squares}
+                onClick={(i) => this.handleClick(i)}
+              />
+            </div>
+            <div className="game-info">
+              <div className="status">{status}</div>
+              <ol className="moves">{moves}</ol>
+            </div>
+          </div> :
+          <div className="players-form">
+            <Form onChange={this.hadleChange} firstValue={first} secondValue={second} />
+            <button className='start' onClick={this.handleStart}>Start</button>
           </div>
-        </div> : 
-        <div className="players-form">
-          <Form  first={this.handleFirstChange}  second={this.handleSecondChange} firstValue={first} secondValue={second}/>
-          <button onClick={this.handleStart}>Start</button>
-        </div>
         }
-        
-       
       </div>
     );
   }
